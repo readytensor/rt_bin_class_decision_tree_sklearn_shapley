@@ -1,0 +1,21 @@
+{
+  "num_trials": 20,
+  "hyperparameters": [
+    {
+      "name": "min_samples_split",
+      "short_desc": "The minimum number of samples required to split an internal node",
+      "type": "int",
+      "search_type": "uniform",
+      "range_low": 2,
+      "range_high": 30
+    },
+    {
+      "name": "min_samples_leaf",
+      "short_desc": "The minimum number of samples required to be at a leaf node.",
+      "type": "int",
+      "search_type": "uniform",
+      "range_low": 1,
+      "range_high": 20
+    }
+  ]
+}
