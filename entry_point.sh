@@ -11,7 +11,7 @@ echo "Running $command"
 # Perform the command specified by the first argument
 case $command in
   # If the command is "train", run the train.py script with all remaining arguments
-  train)
+  notrain)
     python /opt/src/train.py "$@"
     ;;
 
