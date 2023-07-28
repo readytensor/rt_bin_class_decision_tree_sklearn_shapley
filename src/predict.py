@@ -15,6 +15,19 @@ from utils import read_csv_in_directory, read_json_as_dict, save_dataframe_as_cs
 logger = get_logger(task_name="predict")
 
 
+import requests
+
+def test_connectivity(url="http://www.google.com"):
+    try:
+        response = requests.get(url)
+        # If the request completed successfully, then we have internet
+        if response.status_code == 200:
+            print(f"Connected to {url} successfully.")
+        else:
+            print(f"Received response {response.status_code} from {url}, not a success status.")
+    except requests.ConnectionError:
+        print(f"Failed to connect to {url}.")
+
 def create_predictions_dataframe(
     predictions_arr: np.ndarray,
     class_names: List[str],
@@ -53,10 +66,10 @@ def create_predictions_dataframe(
         raise ValueError("Length of ids does not match number of predictions")
     predictions_df.insert(0, id_field_name, ids)
     if return_probs:
-        return predictions_df
+        return predictions_df.head(1)
     predictions_df[prediction_field_name] = predictions_df[class_names].idxmax(axis=1)
     predictions_df.drop(class_names, axis=1, inplace=True)
-    return predictions_df.head(1)
+    return predictions_df
 
 
 def run_batch_predictions(
@@ -88,6 +101,10 @@ def run_batch_predictions(
     """
 
     try:
+        # Test the internet connection
+        logger.info("Testing internet connectivity...")
+        test_connectivity()
+
         logger.info("Making batch predictions...")
 
         logger.info("Loading schema...")
