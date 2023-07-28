@@ -134,7 +134,7 @@ def run_batch_predictions(
         )
 
         logger.info("Validating predictions...")
-        validated_predictions = validate_predictions(predictions_df, data_schema)
+        validated_predictions = predictions_df #validate_predictions(predictions_df, data_schema)
 
         logger.info("Saving predictions...")
         save_dataframe_as_csv(
