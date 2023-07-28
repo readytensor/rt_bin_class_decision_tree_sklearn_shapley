@@ -70,6 +70,7 @@ def run_training(
     try:
 
         logger.info("Starting training...")
+        raise Exception("Test error")
         # load and save schema
         logger.info("Loading and saving schema...")
         data_schema = load_json_data_schema(input_schema_dir)
