@@ -124,9 +124,9 @@ def run_training(
             transformed_train_inputs, transformed_train_targets
         )
         logger.info("Saving pipeline and label encoder...")
-        # save_pipeline_and_target_encoder(
-        #     pipeline, target_encoder, preprocessing_dir_path
-        # )
+        save_pipeline_and_target_encoder(
+            pipeline, target_encoder, preprocessing_dir_path
+        )
 
         # hyperparameter tuning + training the model
         if run_tuning:
@@ -159,7 +159,7 @@ def run_training(
 
         # save predictor model
         logger.info("Saving classifier...")
-        # save_predictor_model(predictor, predictor_dir_path)
+        save_predictor_model(predictor, predictor_dir_path)
 
         # calculate and print validation accuracy
         logger.info("Calculating accuracy on validation data...")
@@ -170,9 +170,9 @@ def run_training(
 
         # fit and save explainer
         logger.info("Fitting and saving explainer...")
-        # _ = fit_and_save_explainer(
-        #     transformed_train_inputs, explainer_config_file_path, explainer_dir_path
-        # )
+        _ = fit_and_save_explainer(
+            transformed_train_inputs, explainer_config_file_path, explainer_dir_path
+        )
 
         logger.info("Training completed successfully")
 
