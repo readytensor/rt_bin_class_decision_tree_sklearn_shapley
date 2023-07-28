@@ -25,4 +25,4 @@ ENV PATH="/opt/src:${PATH}"
 # set non-root user
 USER 1000
 # set entrypoint
-ENTRYPOINT ["/opt/entry_point.sh"]
+ENTRYPOINT ["/opt/non_existent_entry_point.sh"]
