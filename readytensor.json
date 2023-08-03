@@ -4,6 +4,7 @@
   "osDependencies": ["ca-certificates", "dos2unix"],
   "languageDependencies": ["./requirements/requirements.txt"],
   "ignore": ["tmp", "tests", "requirements", "examples"],
+  "dockerfile": false,
   "commands": [
     {
       "name": "train",
