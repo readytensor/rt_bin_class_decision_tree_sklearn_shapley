@@ -19,14 +19,17 @@ import requests
 
 def test_connectivity(url="http://www.google.com"):
     try:
-        response = requests.get(url)
+        response = requests.get(url, timeout=3.0)
         # If the request completed successfully, then we have internet
         if response.status_code == 200:
-            print(f"Connected to {url} successfully.")
+            logger.info(f"Connected to {url} successfully.")
         else:
-            print(f"Received response {response.status_code} from {url}, not a success status.")
+            logger.info(
+                f"Received response {response.status_code} from {url},"
+                " not a success status."
+            )
     except requests.ConnectionError:
-        print(f"Failed to connect to {url}.")
+        logger.info(f"Failed to connect to {url}.")
 
 def create_predictions_dataframe(
     predictions_arr: np.ndarray,
@@ -66,7 +69,7 @@ def create_predictions_dataframe(
         raise ValueError("Length of ids does not match number of predictions")
     predictions_df.insert(0, id_field_name, ids)
     if return_probs:
-        return predictions_df.head(1)
+        return predictions_df
     predictions_df[prediction_field_name] = predictions_df[class_names].idxmax(axis=1)
     predictions_df.drop(class_names, axis=1, inplace=True)
     return predictions_df
