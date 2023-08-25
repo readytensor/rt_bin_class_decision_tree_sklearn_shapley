@@ -1,6 +1,6 @@
 {
   "title": "Titanic Passenger Survival dataset",
-  "summary": "The well-known Titanic dataset used to develop models to predict if a passenger survived the shipwreck.",
+  "description": "The well-known Titanic dataset used to develop models to predict if a passenger survived the shipwreck.",
   "modelCategory": "binary_classification",
   "schemaVersion": 1.0,
   "inputDataFormat": "CSV",
