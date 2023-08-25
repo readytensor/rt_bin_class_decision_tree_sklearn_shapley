@@ -15,22 +15,6 @@ from utils import read_csv_in_directory, read_json_as_dict, save_dataframe_as_cs
 logger = get_logger(task_name="predict")
 
 
-import requests
-
-def test_connectivity(url="http://www.google.com"):
-    try:
-        response = requests.get(url, timeout=3.0)
-        # If the request completed successfully, then we have internet
-        if response.status_code == 200:
-            logger.info(f"Connected to {url} successfully.")
-        else:
-            logger.info(
-                f"Received response {response.status_code} from {url},"
-                " not a success status."
-            )
-    except requests.ConnectionError:
-        logger.info(f"Failed to connect to {url}.")
-
 def create_predictions_dataframe(
     predictions_arr: np.ndarray,
     class_names: List[str],
@@ -104,10 +88,6 @@ def run_batch_predictions(
     """
 
     try:
-        # Test the internet connection
-        logger.info("Testing internet connectivity...")
-        test_connectivity()
-
         logger.info("Making batch predictions...")
 
         logger.info("Loading schema...")
