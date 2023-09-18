@@ -5,8 +5,8 @@ from typing import Optional
 import joblib
 import numpy as np
 import pandas as pd
-from sklearn.tree import DecisionTreeClassifier
 from sklearn.exceptions import NotFittedError
+from sklearn.tree import DecisionTreeClassifier
 
 warnings.filterwarnings("ignore")
 
