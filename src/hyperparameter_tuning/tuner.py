@@ -116,11 +116,8 @@ class HyperParameterTuner:
                     if hp_val_type == "real" and search_type == "log-uniform":
                         # take logarithm of bounds for log-uniform distribution
                         low, high = np.log(low), np.log(high)
-                    val = (
-                        func(name, low, high, 1)
-                        if hp_val_type == "int"
-                        else func(name, low, high)
-                    )
+                    val = func(name, low, high, 1) \
+                        if hp_val_type == "int" else func(name, low, high)
             else:
                 raise ValueError(
                     f"Error creating Hyper-Param Grid. "
@@ -131,6 +128,7 @@ class HyperParameterTuner:
             param_grid[name] = val
 
         return param_grid
+
 
     def run_hyperparameter_tuning(
         self,
@@ -168,8 +166,8 @@ class HyperParameterTuner:
             trials=self.trials,
             # early stop
             early_stop_fn=no_progress_loss(10),
-            #
-            return_argmin=False,
+            # 
+            return_argmin=False
         )
         self.save_hpt_summary_results()
         return best_hyperparams
